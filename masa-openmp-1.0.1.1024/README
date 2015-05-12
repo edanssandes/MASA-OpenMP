@@ -1,0 +1,98 @@
+	                     MASA-OpenMP extension
+	                 
+What is it?
+===========
+
+The MASA-OpenMP extension is used with the MASA architecture to align biological
+sequences in a generic CPU using OpenMP. This extension can also be used as an example to 
+create other extensions in new hardware/software architecture.
+
+
+Version
+=======
+
+The current version is MASA-OpenMP 1.0.0.
+
+
+Compiling
+=========
+
+The simplest way to compile the project is to use the following commands:
+
+   ./configure
+   make
+
+More information can be found in the INSTALL file.
+   
+   
+Executing
+=========
+
+The default command line parameters are inherited from the MASA-Core, but
+new parameters were added by the MASA-CPU extension. You can see all the 
+parameters passing the --help argument.
+
+
+Downloading
+===========
+
+The source code of this project can be downloaded from the git repository:
+
+   git clone https://bitbucket.org/edans/masa-openmp.git
+   
+Before compiling the project, execute the autoreconf script:
+
+   autoreconf --force --install
+   
+   
+Development
+===========
+
+We recommend to read the MASA doxygen documentation before creating any new
+feature or extension.
+
+The libs/masa-core directory contains the MASA-Core code. We recommend
+NOT to change the content of this directory to avoid conflict with the 
+MASA-Core's master track.
+
+To pull the last changes of the MASA-Core, use the following commands:
+
+   ./git-pull-subtrees.sh https://bitbucket.org/edans/masa-core.git
+
+The libs/masa-core directory was created using the git-subtree command.
+If you are copying this extension and want to create a git repository, we
+suggest the following commands:
+
+   find . -type f | grep -i .git | xargs rm
+   rm -rf libs/masa-core
+   git init
+   git add --all
+   git commit -m'Initial Commit'
+   git subtree add --prefix libs/masa-core \
+                   https://bitbucket.org/edans/masa-core.git master --squash
+   autoreconf --force --install
+
+If you need to change the name of the classes, don't forget to change the
+name of the source files in the Makefile.am. The .project file may also be
+changed.
+
+
+Copyright
+=========
+
+This file and all the files in the sub directories are part of CUDAlign
+project.
+
+CUDAlign is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+ 
+CUDAlign is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with CUDAlign.  If not, see <http://www.gnu.org/licenses/>.
+
